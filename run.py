@@ -5,16 +5,12 @@ import streamlit as st
 
 
 def run_ollama(message):
-    # Ollama 모델을 불러옵니다.
     llm = ChatOllama(model="llama3.2:latest")
 
-    # 프롬프트
     prompt = ChatPromptTemplate.from_template("{message}")
 
-    # 체인 생성
     chain = prompt | llm | StrOutputParser()
 
-    # 간결성을 위해 응답은 터미널에 출력됩니다.
     answer = chain.invoke({"message": message})
 
     return answer
